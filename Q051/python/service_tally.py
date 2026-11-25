@@ -11,7 +11,9 @@ def main():
     for entry in LOG.split():
         code, weight = entry.split(":")
         # TODO(Q051): count[code] += 1
+        count[code] += 1
         # TODO(Q051): kg[code] += float(weight)
+        kg[code] += float(weight)
 
     print("(a)+(b) per service, in code order:")
     for code in sorted(count):
@@ -19,7 +21,7 @@ def main():
 
     # (c) one sort with a tuple key: negate to get "largest first".
     # TODO(Q051): ranking = sorted(count, key=lambda c: (-count[c], -kg[c]))
-    ranking = []
+    ranking = sorted(count, key=lambda c: (-count[c], -kg[c]))
     print("(c) ranking:", ranking)
 
     # (d) a dict keeps insertion order (guaranteed since Python 3.7).
