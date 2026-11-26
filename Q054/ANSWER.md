@@ -13,8 +13,7 @@ view.add(new Shirt("x"))).
 | 2 | `totalKg(anything)` | No | `Object` is not a subtype of `Garment` |
 | 3 | `addSpareTowels(basket, 2)` | Yes | `Garment` is a superclass of `Towel`, so `List<Garment>` can accept `Towel` objects. |
 | 4 | `addSpareTowels(bathTowels, 1)` | No | `BathTowel` is a subclass of Towel, not a superclass. A `List<BathTowel>` cannot accept ordinary `Towel` objects. |
-| 5 | `transfer(bathTowels, towels)` | Yes 
-| `BathTowel` objects can be read as `Towel` objects and added to `Collection<Towel>`|
+| 5 | `transfer(bathTowels, towels)` | Yes | `BathTowel` objects can be read as `Towel` objects and added to `Collection<Towel>`|
 | 6 | `transfer(towels, shirts)` | No | A `Towel` cannot be added to a `List<Shirt>` |
 | 7 | `List<Garment> g = shirts` | No | Java generic collections are invariant. `List<Shirt>`is not a subtype of `List<Garment>` |
 | 8 | `view.add(new Shirt("x")))` | No | The actual element type of `List<? extends Garment>` is unknown, so adding a `Shirt` is unsafe. |
@@ -51,8 +50,7 @@ TODO(Q054): which calls does mypy reject, and how do you express `? super Towel`
 | 2 | `total_kg(anything)` | Rejected | `Object` is not a subtype of `Garment`. |
 | 3 | `add_spare_towels(basket, 2)` | Rejected | `MutableSequence` is invariant. |
 | 4 | `add_spare_towels_anywhere(basket, 2)` | Accepted | `Sink` is contravariant. |
-| 5 | `transfer(bath_towels, towels)` | Accepted 
-| `BathTowel` is a subtype of Towel |
+| 5 | `transfer(bath_towels, towels)` | Accepted | `BathTowel` is a subtype of Towel |
 | 6 | `transfer(shirts, basket)` | Accepted | `Shirt` is a subtype of `Garment` |
 | 7 | `transfer([Towel("rogue")], only_shirts)` | Rejected | `Towel` is incompatible with the destination type `Shirt` |
 
